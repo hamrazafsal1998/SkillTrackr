@@ -12,14 +12,8 @@ const app = express();
 // CORS configuration
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = [
-      'http://localhost:5173',
-      'http://localhost:5174',
-      'http://localhost:5175',
-      'https://skilltrackr.netlify.app',
-      'https://astounding-baklava-ead932.netlify.app',
-      'https://skilltrackr-frontend.vercel.app'
-    ];
+    const allowedOrigins = 
+      'https://astounding-baklava-ead932.netlify.app'
     
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
