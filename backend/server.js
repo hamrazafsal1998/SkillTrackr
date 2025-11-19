@@ -13,7 +13,7 @@ const app = express();
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = 
-      'https://astounding-baklava-ead932.netlify.app'
+      ['https://sweet-nasturtium-c6c91d.netlify.app'];
     
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
