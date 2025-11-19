@@ -30,10 +30,10 @@ router.get('/:id', auth, async (req, res) => {
 
 // Create skill
 router.post('/', auth, [
-  body('name').isLength({ min: 1, max: 100 }).trim(),
+  body('name').isLength({ min: 1, max: 100 }).trim().notEmpty(),
   body('icon').isIn(['keyboard', 'dumbbell', 'brush', 'music', 'book', 'code', 'camera', 'gamepad', 'other']),
-  body('startingLevel').isInt({ min: 1, max: 10 }),
-  body('mainGoal').isLength({ min: 1, max: 500 }).trim(),
+  body('startingLevel').isInt({ min: 1, max: 10 }).toInt(),
+  body('mainGoal').isLength({ min: 1, max: 500 }).trim().notEmpty(),
   body('targetDate').isISO8601()
 ], async (req, res) => {
   try {
@@ -48,7 +48,7 @@ router.post('/', auth, [
       user: req.user._id,
       name,
       icon,
-      startingLevel,
+      startingLevel: parseInt(startingLevel),
       mainGoal,
       targetDate: new Date(targetDate)
     });

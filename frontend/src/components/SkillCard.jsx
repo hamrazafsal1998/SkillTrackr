@@ -63,7 +63,7 @@ const SkillCard = ({ skill }) => {
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600 dark:text-gray-400">Last update:</span>
           <span className="font-medium text-gray-900 dark:text-gray-100">
-            {skill.lastUpdate ? new Date(skill.lastUpdate).toLocaleDateString() : 'Never'}
+            {skill.updatedAt ? new Date(skill.updatedAt).toLocaleDateString() : 'Never'}
           </span>
         </div>
       </div>

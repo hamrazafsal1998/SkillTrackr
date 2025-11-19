@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ProgressTimeline = ({ progressLogs }) => {
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://skilltrackr.onrender.com/api';
   const sortedLogs = [...progressLogs].sort((a, b) => new Date(b.date) - new Date(a.date));
 
   if (sortedLogs.length === 0) {
@@ -51,7 +52,7 @@ const ProgressTimeline = ({ progressLogs }) => {
                   {log.image && (
                     <div className="mt-3">
                       <img
-                        src={`http://localhost:5000${log.image}`}
+                        src={`${apiUrl}${log.image}`}
                         alt="Progress"
                         className="max-w-full h-auto rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
                         style={{ maxHeight: '200px' }}
