@@ -72,11 +72,19 @@ const Signup = () => {
       navigate('/dashboard');
     } catch (err) {
       console.error('Signup error:', err);
+      
+      // Handle different error types
       if (err.response?.data?.errors) {
         const errorMsg = err.response.data.errors.map(e => e.message).join(', ');
         setError(errorMsg);
+      } else if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.message === 'Network Error' || err.code === 'ERR_NETWORK') {
+        setError('Network error: Please check your connection and try again.');
+      } else if (err.response?.status === 0) {
+        setError('Failed to connect to server. Please try again later.');
       } else {
-        setError(err.response?.data?.message || 'Signup failed. Please try again.');
+        setError(err.message || 'Signup failed. Please try again.');
       }
     } finally {
       setLoading(false);
